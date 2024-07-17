@@ -1,0 +1,369 @@
+- - - - - - - - - - - - - - - - - 
+Term: Affinity
+Definition: In Kubernetes, affinity is a set of rules that give hints to the scheduler about where to place pods.[+]
+Supplemental definition: There are two kinds of affinity: node affinity pod-to-pod affinity The rules are defined using the Kubernetes labels , and selectors specified in pods , and they can be either required or preferred, depending on how strictly you want the scheduler to enforce them.
+
+- - - - - - - - - - - - - - - - - 
+Term: Annotation
+Definition: A key-value pair that is used to attach arbitrary non-identifying metadata to objects.[+]
+Supplemental definition: The metadata in an annotation can be small or large, structured or unstructured, and can include characters not permitted by labels . Clients such as tools and libraries can retrieve this metadata.
+
+- - - - - - - - - - - - - - - - - 
+Term: API Group
+Definition: A set of related paths in Kubernetes API.[+]
+Supplemental definition: You can enable or disable each API group by changing the configuration of your API server. You can also disable or enable paths to specific resources. API group makes it easier to extend the Kubernetes API. The API group is specified in a REST path and in the apiVersion field of a serialized object. Read API Group for more information.
+
+- - - - - - - - - - - - - - - - - 
+Term: API server
+Definition: The API server is a component of the Kubernetes
+control plane that exposes the Kubernetes API.
+The API server is the front end for the Kubernetes control plane.[+]
+Supplemental definition: The main implementation of a Kubernetes API server is kube-apiserver . kube-apiserver is designed to scale horizontally—that is, it scales by deploying more instances. You can run several instances of kube-apiserver and balance traffic between those instances.
+
+- - - - - - - - - - - - - - - - - 
+Term: Applications
+Definition: The layer where various containerized applications run. [+]
+Supplemental definition: The layer where various containerized applications run.
+
+- - - - - - - - - - - - - - - - - 
+Term: cgroup (control group)
+Definition: A group of Linux processes with optional resource isolation, accounting and limits.[+]
+Supplemental definition: cgroup is a Linux kernel feature that limits, accounts for, and isolates the resource usage (CPU, memory, disk I/O, network) for a collection of processes.
+
+- - - - - - - - - - - - - - - - - 
+Term: Cluster
+Definition: A set of worker machines, called nodes,
+that run containerized applications. Every cluster has at least one worker node.[+]
+Supplemental definition: The worker node(s) host the Pods that are the components of the application workload. The control plane manages the worker nodes and the Pods in the cluster. In production environments, the control plane usually runs across multiple computers and a cluster usually runs multiple nodes, providing fault-tolerance and high availability.
+
+- - - - - - - - - - - - - - - - - 
+Term: Container
+Definition: A lightweight and portable executable image that contains software and all of its dependencies.[+]
+Supplemental definition: Containers decouple applications from underlying host infrastructure to make deployment easier in different cloud or OS environments, and for easier scaling. The applications that run inside containers are called containerized applications. The process of bundling these applications and their dependencies into a container image is called containerization.
+
+- - - - - - - - - - - - - - - - - 
+Term: Container Environment Variables
+Definition: Container environment variables are name=value pairs that provide useful information into containers running in a pod[+]
+Supplemental definition: Container environment variables provide information that is required by the running containerized applications along with information about important resources to the containers . For example, file system details, information about the container itself, and other cluster resources such as service endpoints.
+
+- - - - - - - - - - - - - - - - - 
+Term: Container Runtime
+Definition: A fundamental component that empowers Kubernetes to run containers effectively.
+It is responsible for managing the execution and lifecycle of containers within the Kubernetes environment.[+]
+Supplemental definition: Kubernetes supports container runtimes such as containerd , CRI-O , and any other implementation of the Kubernetes CRI (Container Runtime Interface) .
+
+- - - - - - - - - - - - - - - - - 
+Term: Container runtime interface (CRI)
+Definition: The container runtime interface (CRI) is an API for container runtimes
+to integrate with the kubelet on a node.[+]
+Supplemental definition: For more information, see the CRI API and specifications.
+
+- - - - - - - - - - - - - - - - - 
+Term: Control Plane
+Definition: The container orchestration layer that exposes the API and interfaces to define, deploy, and manage the lifecycle of containers.[+]
+Supplemental definition: This layer is composed by many different components, such as (but not restricted to): etcd API Server Scheduler Controller Manager Cloud Controller Manager These components can be run as traditional operating system services (daemons) or as containers. The hosts running these components were historically called masters .
+
+- - - - - - - - - - - - - - - - - 
+Term: Controller
+Definition: In Kubernetes, controllers are control loops that watch the state of your
+cluster, then make or request
+changes where needed.
+Each controller tries to move the current cluster state closer to the desired
+state.[+]
+Supplemental definition: Controllers watch the shared state of your cluster through the apiserver (part of the Control Plane ). Some controllers also run inside the control plane, providing control loops that are core to Kubernetes' operations. For example: the deployment controller, the daemonset controller, the namespace controller, and the persistent volume controller (and others) all run within the kube-controller-manager .
+
+- - - - - - - - - - - - - - - - - 
+Term: CustomResourceDefinition
+Definition: Custom code that defines a resource to add to your Kubernetes API server without building a complete custom server.[+]
+Supplemental definition: Custom Resource Definitions let you extend the Kubernetes API for your environment if the publicly supported API resources can't meet your needs.
+
+- - - - - - - - - - - - - - - - - 
+Term: DaemonSet
+Definition: Ensures a copy of a Pod is running across a set of nodes in a cluster.[+]
+Supplemental definition: Used to deploy system daemons such as log collectors and monitoring agents that typically must run on every Node .
+
+- - - - - - - - - - - - - - - - - 
+Term: Data Plane
+Definition: The layer that provides capacity such as CPU, memory, network, and storage so that the containers can run and connect to a network. [+]
+Supplemental definition: The layer that provides capacity such as CPU, memory, network, and storage so that the containers can run and connect to a network.
+
+- - - - - - - - - - - - - - - - - 
+Term: Deployment
+Definition: An API object that manages a replicated application, typically by running Pods with no local state.[+]
+Supplemental definition: Each replica is represented by a Pod , and the Pods are distributed among the nodes of a cluster. For workloads that do require local state, consider using a StatefulSet .
+
+- - - - - - - - - - - - - - - - - 
+Term: Device Plugin
+Definition: Device plugins run on worker
+Nodes and provide
+Pods with access to resources,
+such as local hardware, that require vendor-specific initialization or setup
+steps.[+]
+Supplemental definition: Device plugins advertise resources to the kubelet , so that workload Pods can access hardware features that relate to the Node where that Pod is running. You can deploy a device plugin as a DaemonSet , or install the device plugin software directly on each target Node. See Device Plugins for more information.
+
+- - - - - - - - - - - - - - - - - 
+Term: Disruption
+Definition: Disruptions are events that lead to one or more
+Pods going out of service.
+A disruption has consequences for workload resources, such as
+Deployment, that rely on the affected
+Pods.[+]
+Supplemental definition: If you, as cluster operator, destroy a Pod that belongs to an application, Kubernetes terms that a voluntary disruption . If a Pod goes offline because of a Node failure, or an outage affecting a wider failure zone, Kubernetes terms that an involuntary disruption . See Disruptions for more information.
+
+- - - - - - - - - - - - - - - - - 
+Term: Docker
+Definition: Docker (specifically, Docker Engine) is a software technology providing operating-system-level virtualization also known as containers.[+]
+Supplemental definition: Docker uses the resource isolation features of the Linux kernel such as cgroups and kernel namespaces, and a union-capable file system such as OverlayFS and others to allow independent containers to run within a single Linux instance, avoiding the overhead of starting and maintaining virtual machines (VMs).
+
+- - - - - - - - - - - - - - - - - 
+Term: Dockershim
+Definition: The dockershim is a component of Kubernetes version 1.23 and earlier. It allows the kubelet
+to communicate with Docker Engine.[+]
+Supplemental definition: Starting with version 1.24, dockershim has been removed from Kubernetes. For more information, see Dockershim FAQ .
+
+- - - - - - - - - - - - - - - - - 
+Term: Ephemeral Container
+Definition: A Container type that you can temporarily run inside a Pod.[+]
+Supplemental definition: If you want to investigate a Pod that's running with problems, you can add an ephemeral container to that Pod and carry out diagnostics. Ephemeral containers have no resource or scheduling guarantees, and you should not use them to run any part of the workload itself. Ephemeral containers are not supported by static pods .
+
+- - - - - - - - - - - - - - - - - 
+Term: Event
+Definition: Event is a Kubernetes object that describes state change/notable occurrences in the system.[+]
+Supplemental definition: Events have a limited retention time and triggers and messages may evolve with time. Event consumers should not rely on the timing of an event with a given reason reflecting a consistent underlying trigger, or the continued existence of events with that reason. Events should be treated as informative, best-effort, supplemental data. In Kubernetes, auditing generates a different kind of Event record (API group audit.k8s.io ).
+
+- - - - - - - - - - - - - - - - - 
+Term: Extensions
+Definition: Extensions are software components that extend and deeply integrate with Kubernetes to support new types of hardware.[+]
+Supplemental definition: Many cluster administrators use a hosted or distribution instance of Kubernetes. These clusters come with extensions pre-installed. As a result, most Kubernetes users will not need to install extensions and even fewer users will need to author new ones.
+
+- - - - - - - - - - - - - - - - - 
+Term: Feature gate
+Definition: Feature gates are a set of keys (opaque string values) that you can use to control which
+Kubernetes features are enabled in your cluster.[+]
+Supplemental definition: You can turn these features on or off using the --feature-gates command line flag on each Kubernetes component. Each Kubernetes component lets you enable or disable a set of feature gates that are relevant to that component. The Kubernetes documentation lists all current feature gates and what they control.
+
+- - - - - - - - - - - - - - - - - 
+Term: Finalizer
+Definition: Finalizers are namespaced keys that tell Kubernetes to wait until specific
+conditions are met before it fully deletes resources marked for deletion.
+Finalizers alert controllers
+to clean up resources the deleted object owned.[+]
+Supplemental definition: When you tell Kubernetes to delete an object that has finalizers specified for it, the Kubernetes API marks the object for deletion by populating .metadata.deletionTimestamp , and returns a 202 status code (HTTP "Accepted"). The target object remains in a terminating state while the control plane, or other components, take the actions defined by the finalizers. After these actions are complete, the controller removes the relevant finalizers from the target object. When the metadata.finalizers field is empty, Kubernetes considers the deletion complete and deletes the object. You can use finalizers to control garbage collection of resources. For example, you can define a finalizer to clean up related resources or infrastructure before the controller deletes the target resource.
+
+- - - - - - - - - - - - - - - - - 
+Term: Garbage Collection
+Definition: Garbage collection is a collective term for the various mechanisms Kubernetes uses to clean up
+cluster resources.[+]
+Supplemental definition: Kubernetes uses garbage collection to clean up resources like unused containers and images , failed Pods , objects owned by the targeted resource , completed Jobs , and resources that have expired or failed.
+
+- - - - - - - - - - - - - - - - - 
+Term: Image
+Definition: Stored instance of a Container that holds a set of software needed to run an application.[+]
+Supplemental definition: A way of packaging software that allows it to be stored in a container registry, pulled to a local system, and run as an application. Meta data is included in the image that can indicate what executable to run, who built it, and other information.
+
+- - - - - - - - - - - - - - - - - 
+Term: Init Container
+Definition: One or more initialization containers that must run to completion before any app containers run.[+]
+Supplemental definition: Initialization (init) containers are like regular app containers, with one difference: init containers must run to completion before any app containers can start. Init containers run in series: each init container must run to completion before the next init container begins. Unlike sidecar containers , init containers do not remain running after Pod startup. For more information, read init containers .
+
+- - - - - - - - - - - - - - - - - 
+Term: Job
+Definition: A finite or batch task that runs to completion.[+]
+Supplemental definition: Creates one or more Pod objects and ensures that a specified number of them successfully terminate. As Pods successfully complete, the Job tracks the successful completions.
+
+- - - - - - - - - - - - - - - - - 
+Term: kube-controller-manager
+Definition: Control plane component that runs controller processes.[+]
+Supplemental definition: Logically, each controller is a separate process, but to reduce complexity, they are all compiled into a single binary and run in a single process.
+
+- - - - - - - - - - - - - - - - - 
+Term: kube-proxy
+Definition: kube-proxy is a network proxy that runs on each
+node in your cluster,
+implementing part of the Kubernetes
+Service concept.[+]
+Supplemental definition: kube-proxy maintains network rules on nodes. These network rules allow network communication to your Pods from network sessions inside or outside of your cluster. kube-proxy uses the operating system packet filtering layer if there is one and it's available. Otherwise, kube-proxy forwards the traffic itself.
+
+- - - - - - - - - - - - - - - - - 
+Term: Kubectl
+Definition: Command line tool for communicating with a Kubernetes cluster's
+control plane,
+using the Kubernetes API.[+]
+Supplemental definition: You can use kubectl to create, inspect, update, and delete Kubernetes objects.
+
+- - - - - - - - - - - - - - - - - 
+Term: Kubelet
+Definition: An agent that runs on each node in the cluster. It makes sure that containers are running in a Pod.[+]
+Supplemental definition: The kubelet takes a set of PodSpecs that are provided through various mechanisms and ensures that the containers described in those PodSpecs are running and healthy. The kubelet doesn't manage containers which were not created by Kubernetes.
+
+- - - - - - - - - - - - - - - - - 
+Term: Kubernetes API
+Definition: The application that serves Kubernetes functionality through a RESTful interface and stores the state of the cluster.[+]
+Supplemental definition: Kubernetes resources and "records of intent" are all stored as API objects, and modified via RESTful calls to the API. The API allows configuration to be managed in a declarative way. Users can interact with the Kubernetes API directly, or via tools like kubectl . The core Kubernetes API is flexible and can also be extended to support custom resources.
+
+- - - - - - - - - - - - - - - - - 
+Term: Label
+Definition: Tags objects with identifying attributes that are meaningful and relevant to users.[+]
+Supplemental definition: Labels are key/value pairs that are attached to objects such as Pods . They are used to organize and to select subsets of objects.
+
+- - - - - - - - - - - - - - - - - 
+Term: LimitRange
+Definition: Provides constraints to limit resource consumption per Containers or Pods in a namespace.[+]
+Supplemental definition: LimitRange limits the quantity of objects that can be created by type, as well as the amount of compute resources that may be requested/consumed by individual Containers or Pods in a namespace.
+
+- - - - - - - - - - - - - - - - - 
+Term: Logging
+Definition: Logs are the list of events that are logged by cluster or application.[+]
+Supplemental definition: Application and systems logs can help you understand what is happening inside your cluster. The logs are particularly useful for debugging problems and monitoring cluster activity.
+
+- - - - - - - - - - - - - - - - - 
+Term: Manifest
+Definition: Specification of a Kubernetes API object in JSON or YAML format.[+]
+Supplemental definition: A manifest specifies the desired state of an object that Kubernetes will maintain when you apply the manifest. Each configuration file can contain multiple manifests.
+
+- - - - - - - - - - - - - - - - - 
+Term: Master
+Definition: Legacy term, used as synonym for nodes hosting the control plane.[+]
+Supplemental definition: The term is still being used by some provisioning tools, such as kubeadm , and managed services, to label nodes with kubernetes.io/role and control placement of control plane pods .
+
+- - - - - - - - - - - - - - - - - 
+Term: Minikube
+Definition: A tool for running Kubernetes locally.[+]
+Supplemental definition: Minikube runs a single-node cluster inside a VM on your computer. You can use Minikube to try Kubernetes in a learning environment .
+
+- - - - - - - - - - - - - - - - - 
+Term: Mirror Pod
+Definition: A pod object that a kubelet uses
+to represent a static pod[+]
+Supplemental definition: When the kubelet finds a static pod in its configuration, it automatically tries to create a Pod object on the Kubernetes API server for it. This means that the pod will be visible on the API server, but cannot be controlled from there. (For example, removing a mirror pod will not stop the kubelet daemon from running it).
+
+- - - - - - - - - - - - - - - - - 
+Term: Name
+Definition: A client-provided string that refers to an object in a resource URL, such as /api/v1/pods/some-name.[+]
+Supplemental definition: Only one object of a given kind can have a given name at a time. However, if you delete the object, you can make a new object with the same name.
+
+- - - - - - - - - - - - - - - - - 
+Term: Namespace
+Definition: An abstraction used by Kubernetes to support isolation of groups of resources within a single cluster.[+]
+Supplemental definition: Namespaces are used to organize objects in a cluster and provide a way to divide cluster resources. Names of resources need to be unique within a namespace, but not across namespaces. Namespace-based scoping is applicable only for namespaced objects (e.g. Deployments, Services, etc) and not for cluster-wide objects (e.g. StorageClass, Nodes, PersistentVolumes, etc) .
+
+- - - - - - - - - - - - - - - - - 
+Term: Node
+Definition: A node is a worker machine in Kubernetes.[+]
+Supplemental definition: A worker node may be a VM or physical machine, depending on the cluster. It has local daemons or services necessary to run Pods and is managed by the control plane. The daemons on a node include kubelet , kube-proxy , and a container runtime implementing the CRI such as Docker . In early Kubernetes versions, Nodes were called "Minions".
+
+- - - - - - - - - - - - - - - - - 
+Term: Object
+Definition: An entity in the Kubernetes system. The Kubernetes API uses these entities to represent the state
+of your cluster.[+]
+Supplemental definition: A Kubernetes object is typically a “record of intent”—once you create the object, the Kubernetes control plane works constantly to ensure that the item it represents actually exists. By creating an object, you're effectively telling the Kubernetes system what you want that part of your cluster's workload to look like; this is your cluster's desired state.
+
+- - - - - - - - - - - - - - - - - 
+Term: Pod
+Definition: The smallest and simplest Kubernetes object. A Pod represents a set of running containers on your cluster.[+]
+Supplemental definition: A Pod is typically set up to run a single primary container. It can also run optional sidecar containers that add supplementary features like logging. Pods are commonly managed by a Deployment .
+
+- - - - - - - - - - - - - - - - - 
+Term: Pod Lifecycle
+Definition: The sequence of states through which a Pod passes during its lifetime.[+]
+Supplemental definition: The Pod Lifecycle is defined by the states or phases of a Pod. There are five possible Pod phases: Pending, Running, Succeeded, Failed, and Unknown. A high-level description of the Pod state is summarized in the PodStatus phase field.
+
+- - - - - - - - - - - - - - - - - 
+Term: Pod Security Policy
+Definition: Enables fine-grained authorization of Pod creation and updates.[+]
+Supplemental definition: A cluster-level resource that controls security sensitive aspects of the Pod specification. The PodSecurityPolicy objects define a set of conditions that a Pod must run with in order to be accepted into the system, as well as defaults for the related fields. Pod Security Policy control is implemented as an optional admission controller. PodSecurityPolicy was deprecated as of Kubernetes v1.21, and removed in v1.25. As an alternative, use Pod Security Admission or a 3rd party admission plugin.
+
+- - - - - - - - - - - - - - - - - 
+Term: QoS Class
+Definition: QoS Class (Quality of Service Class) provides a way for Kubernetes to classify Pods within the cluster into several classes and make decisions about scheduling and eviction.[+]
+Supplemental definition: QoS Class of a Pod is set at creation time based on its compute resources requests and limits settings. QoS classes are used to make decisions about Pods scheduling and eviction. Kubernetes can assign one of the following QoS classes to a Pod: Guaranteed , Burstable or BestEffort .
+
+- - - - - - - - - - - - - - - - - 
+Term: RBAC (Role-Based Access Control)
+Definition: Manages authorization decisions, allowing admins to dynamically configure access policies through the Kubernetes API.[+]
+Supplemental definition: RBAC utilizes roles , which contain permission rules, and role bindings , which grant the permissions defined in a role to a set of users.
+
+- - - - - - - - - - - - - - - - - 
+Term: Replica
+Definition: A copy or duplicate of a Pod or
+a set of pods. Replicas ensure high availability, scalability, and fault tolerance
+by maintaining multiple identical instances of a pod.[+]
+Supplemental definition: Replicas are commonly used in Kubernetes to achieve the desired application state and reliability. They enable workload scaling and distribution across multiple nodes in a cluster. By defining the number of replicas in a Deployment or ReplicaSet, Kubernetes ensures that the specified number of instances are running, automatically adjusting the count as needed. Replica management allows for efficient load balancing, rolling updates, and self-healing capabilities in a Kubernetes cluster.
+
+- - - - - - - - - - - - - - - - - 
+Term: ReplicaSet
+Definition: A ReplicaSet (aims to) maintain a set of replica Pods running at any given time.[+]
+Supplemental definition: Workload objects such as Deployment make use of ReplicaSets to ensure that the configured number of Pods are running in your cluster, based on the spec of that ReplicaSet.
+
+- - - - - - - - - - - - - - - - - 
+Term: Resource Quotas
+Definition: Provides constraints that limit aggregate resource consumption per Namespace.[+]
+Supplemental definition: Limits the quantity of objects that can be created in a namespace by type, as well as the total amount of compute resources that may be consumed by resources in that project.
+
+- - - - - - - - - - - - - - - - - 
+Term: Selector
+Definition: Allows users to filter a list of resources based on labels.[+]
+Supplemental definition: Selectors are applied when querying lists of resources to filter them by labels.
+
+- - - - - - - - - - - - - - - - - 
+Term: Service
+Definition: A method for exposing a network application that is running as one or more
+Pods in your cluster.[+]
+Supplemental definition: The set of Pods targeted by a Service is (usually) determined by a selector . If more Pods are added or removed, the set of Pods matching the selector will change. The Service makes sure that network traffic can be directed to the current set of Pods for the workload. Kubernetes Services either use IP networking (IPv4, IPv6, or both), or reference an external name in the Domain Name System (DNS). The Service abstraction enables other mechanisms, such as Ingress and Gateway.
+
+- - - - - - - - - - - - - - - - - 
+Term: ServiceAccount
+Definition: Provides an identity for processes that run in a Pod.[+]
+Supplemental definition: When processes inside Pods access the cluster, they are authenticated by the API server as a particular service account, for example, default . When you create a Pod, if you do not specify a service account, it is automatically assigned the default service account in the same Namespace .
+
+- - - - - - - - - - - - - - - - - 
+Term: Shuffle-sharding
+Definition: A technique for assigning requests to queues that provides better isolation than hashing modulo the number of queues.[+]
+Supplemental definition: We are often concerned with insulating different flows of requests from each other, so that a high-intensity flow does not crowd out low-intensity flows. A simple way to put requests into queues is to hash some characteristics of the request, modulo the number of queues, to get the index of the queue to use. The hash function uses as input characteristics of the request that align with flows. For example, in the Internet this is often the 5-tuple of source and destination address, protocol, and source and destination port. That simple hash-based scheme has the property that any high-intensity flow will crowd out all the low-intensity flows that hash to the same queue. Providing good insulation for a large number of flows requires a large number of queues, which is problematic. Shuffle-sharding is a more nimble technique that can do a better job of insulating the low-intensity flows from the high-intensity flows. The terminology of shuffle-sharding uses the metaphor of dealing a hand from a deck of cards; each queue is a metaphorical card. The shuffle-sharding technique starts with hashing the flow-identifying characteristics of the request, to produce a hash value with dozens or more of bits. Then the hash value is used as a source of entropy to shuffle the deck and deal a hand of cards (queues). All the dealt queues are examined, and the request is put into one of the examined queues with the shortest length. With a modest hand size, it does not cost much to examine all the dealt cards and a given low-intensity flow has a good chance to dodge the effects of a given high-intensity flow. With a large hand size it is expensive to examine the dealt queues and more difficult for the low-intensity flows to dodge the collective effects of a set of high-intensity flows. Thus, the hand size should be chosen judiciously.
+
+- - - - - - - - - - - - - - - - - 
+Term: Sidecar Container
+Definition: One or more containers that are typically started before any app containers run.[+]
+Supplemental definition: Sidecar containers are like regular app containers, but with a different purpose: the sidecar provides a Pod-local service to the main app container. Unlike init containers , sidecar containers continue running after Pod startup. Read Sidecar containers for more information.
+
+- - - - - - - - - - - - - - - - - 
+Term: Spec
+Definition: Defines how each object, like Pods or Services, should be configured and its desired state.[+]
+Supplemental definition: Almost every Kubernetes object includes two nested object fields that govern the object's configuration: the object spec and the object status. For objects that have a spec, you have to set this when you create the object, providing a description of the characteristics you want the resource to have: its desired state. It varies for different objects like Pods, StatefulSets, and Services, detailing settings such as containers, volumes, replicas, ports, and other specifications unique to each object type. This field encapsulates what state Kubernetes should maintain for the defined object.
+
+- - - - - - - - - - - - - - - - - 
+Term: StatefulSet
+Definition: Manages the deployment and scaling of a set of Pods, and provides guarantees about the ordering and uniqueness of these Pods.[+]
+Supplemental definition: Like a Deployment , a StatefulSet manages Pods that are based on an identical container spec. Unlike a Deployment, a StatefulSet maintains a sticky identity for each of its Pods. These pods are created from the same spec, but are not interchangeable: each has a persistent identifier that it maintains across any rescheduling. If you want to use storage volumes to provide persistence for your workload, you can use a StatefulSet as part of the solution. Although individual Pods in a StatefulSet are susceptible to failure, the persistent Pod identifiers make it easier to match existing volumes to the new Pods that replace any that have failed.
+
+- - - - - - - - - - - - - - - - - 
+Term: Static Pod
+Definition: A pod managed directly by the kubelet
+daemon on a specific node,[+]
+Supplemental definition: without the API server observing it. Static Pods do not support ephemeral containers .
+
+- - - - - - - - - - - - - - - - - 
+Term: Taint
+Definition: A core object consisting of three required properties: key, value, and effect. Taints prevent the scheduling of Pods on nodes or node groups.[+]
+Supplemental definition: Taints and tolerations work together to ensure that pods are not scheduled onto inappropriate nodes. One or more taints are applied to a node. A node should only schedule a Pod with the matching tolerations for the configured taints.
+
+- - - - - - - - - - - - - - - - - 
+Term: Toleration
+Definition: A core object consisting of three required properties: key, value, and effect. Tolerations enable the scheduling of pods on nodes or node groups that have matching taints.[+]
+Supplemental definition: Tolerations and taints work together to ensure that pods are not scheduled onto inappropriate nodes. One or more tolerations are applied to a pod . A toleration indicates that the pod is allowed (but not required) to be scheduled on nodes or node groups with matching taints .
+
+- - - - - - - - - - - - - - - - - 
+Term: UID
+Definition: A Kubernetes systems-generated string to uniquely identify objects.[+]
+Supplemental definition: Every object created over the whole lifetime of a Kubernetes cluster has a distinct UID. It is intended to distinguish between historical occurrences of similar entities.
+
+- - - - - - - - - - - - - - - - - 
+Term: Volume
+Definition: A directory containing data, accessible to the containers in a Pod.[+]
+Supplemental definition: A Kubernetes volume lives as long as the Pod that encloses it. Consequently, a volume outlives any containers that run within the Pod, and data in the volume is preserved across container restarts. See storage for more information.
+
+- - - - - - - - - - - - - - - - - 
+Term: Workload
+Definition: A workload is an application running on Kubernetes.[+]
+Supplemental definition: Various core objects that represent different types or parts of a workload include the DaemonSet, Deployment, Job, ReplicaSet, and StatefulSet objects. For example, a workload that has a web server and a database might run the database in one StatefulSet and the web server in a Deployment .
+
